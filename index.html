@@ -9,20 +9,21 @@
 
     <!-- java script -->
     <script src="myscripts.js"></script>
-    
+
 </head>
 <body>
     <section class="container">
         <div class="page">
-            <h1>todo listttttttt</h1>
-            <form>
-                <input type="text" placeholder="New Todo ...">
-                <button type="submit"><i class="fas fa-plus-square"></i></button>
+            <form action="">
+            <img src="./images/todo.png" alt="todo-list" style="width:50%;height:50%;">
+            <div><br>
+                <label class="label">TO-DO list</label> <br><br>
+                <input class="formInput" type="todo_input" type="text" id="todo" required><button class="submit"><span>ADD</span></button>
+            </div>
+
             </form>
-            <div class="todoList">
-                <ul>
-                </ul>
-                <a class="clearAll" id="clearAll">Clear All</a>
+            <div>
+                <ul class="listOfItems"></ul>
             </div>
         </div>
     </section>
