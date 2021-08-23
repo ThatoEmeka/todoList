@@ -1,7 +1,7 @@
 body{
     width: 100%;
     height: inherit;
-    background-color: brown;
+    background-color: rgba(228, 199, 38, 0.856);
     background-image: URL('images/woodbg.png');
     align-items: center;
     justify-content: center;
@@ -16,7 +16,7 @@ body{
     display: block;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     height: auto;
     max-width: 435px;
     padding: 1rem;
@@ -28,8 +28,13 @@ body{
   }
 
   #todos li.done {
+    text-align: left;
     text-decoration: line-through;
  }
+  #todos li:hover {
+    text-decoration: line-through wavy #24bffb;
+  }
+
 
 .formInput{
     background-color: transparent;
