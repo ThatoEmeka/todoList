@@ -18,14 +18,97 @@
             <img src="./images/todo.png" alt="todo-list" style="width:50%;height:50%;">
             <div><br>
                 <label class="label">TO-DO list</label> <br><br>
-                <input class="formInput" type="todo_input" type="text" id="todo" required><button class="submit"><span>ADD</span></button>
+                <input class="formInput" type="text" type="text" name="todo" id="todo" required>
+                <button type="submit" name="add"><span>ADD</span></button>
             </div>
 
             </form>
             <div>
-                <ul class="listOfItems"></ul>
+                <ul id="todos"></ul>
+                <!-- <li>Finnish my ToDO list</li> -->
             </div>
         </div>
     </section>
+
+    <script>
+
+        class DataStore {
+            data = {};
+            
+            constructor(data) {
+                data = data || {};
+            }
+
+            add(todo) {
+                const todoItem = new TodoItem(todo);
+                this.data[todoItem.id] = todoItem;
+                addTodo(todo, todoItem.id)
+            }
+
+            remove(id) {
+                delete this.data[id];
+                const todoItemElement = document.getElementById(id);
+                todoList.removeChild(todoItemElement);
+            }
+        }
+
+        class TodoItem {
+            id = 0;
+            content = '';
+
+            constructor(content) {
+                this.id = Date.now();
+                this.content = content;
+            }
+        }
+
+        const form = document.querySelector('form');
+        const input = document.querySelector("[name='todo']");
+        const todoList = document.getElementById('todos');
+
+        const todoData = new DataStore({});
+
+        function addTodo(todoText, id) {
+            const todoItem = document.createElement('li')
+            todoItem.innerHTML = todoText;
+            todoItem.id = id;
+            todoList.appendChild(todoItem);
+
+            input.value = '';
+
+            todoItem.onclick = () => {
+                if(todoItem.classList.contains('done')) {
+                    todoItem.classList.remove('done')
+                }else{
+                    todoItem.classList.add('done');
+                }            
+            };
+
+            const closeButton = createCloseButton();
+
+            todoItem.appendChild(closeButton);
+        }
+
+        function createCloseButton() {
+            const span = document.createElement('span');
+
+            span.innerHTML = "\u00D7";
+
+            span.onclick = () => {
+                const todoItem = span.parentElement;
+
+                todoData.remove(todoItem.id);
+            };
+            return span;
+        }
+
+        form.onsubmit = (event) => {
+            
+            event.preventDefault();
+            todoData.add(input.value);
+        }
+
+
+    </script>
 </body>
 </html>

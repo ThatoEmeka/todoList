@@ -27,6 +27,10 @@ body{
     transition-duration: 0.5s;
   }
 
+  #todos li.done {
+    text-decoration: line-through;
+ }
+
 .formInput{
     background-color: transparent;
     border: transparent;
